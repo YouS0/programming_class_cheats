@@ -6,22 +6,41 @@ for n in content:
     numbers.append(int(n.strip()))
 print ('numbers are ready')
 
-def func(x):
-    print ('func started for %s' % x)
-    # Returns the number of distinct pairs (y, z) from the numbers in the file "numbers.txt" whose y != z and (y + z) == x
-    # Note that two pairs (y, z) and (z, y) are considered the same and are counted only once
-    ans = set() 
+numbers.sort()
+def binary_search(array, element):
+    mid = 0
+    start = 0
+    end = len(array) - 1
     step = 0
-    for i in numbers:
-        j = x - i # we are looking for j where j+i == x
-        if j in numbers:
-            if j == i:
-                continue
-            elif j > i:
-                ans.add((j,i))
-            else:
-                ans.add((i,j))
-    return len(ans) 
+
+    while (start <= end):
+        
+        step = step+1
+        mid = (start + end) // 2
+
+        if element == array[mid]:
+            return mid
+
+        if element < array[mid]:
+            end = mid - 1
+        else:
+            start = mid + 1
+    return -1
+
+def func(adad) :
+    javab = set()
+    print('trying for %s' %adad)
+    for i in numbers :
+        el = adad - i
+        ans = numbers[binary_search(numbers , el)]
+        if binary_search(numbers , el) != -1 and ans !=i :
+            if ans > i :
+                javab.add((ans , i))
+                #print(ans , i , ans + i , adad)
+            else :
+                javab.add((i , ans))
+                #print(ans , i , ans + i , adad)
+    return len(javab)
 
 
 def get_flag(res):
@@ -44,4 +63,4 @@ if __name__ == "__main__":
            344209171, 537454826, 691277475, 2634678623, 1112182335, 792111856, 762989676, 666210267, 871278369,
            581009345, 391231132, 921732469, 717217468, 3101412929, 3101217354, 831912337, 532666530, 701012510,
            601365919, 492699680, 2843119525]
-    print("The flag is", get_flag(res))
+print("The flag is", get_flag(res))
